@@ -1,0 +1,41 @@
+@startuml test
+
+class University {
+  + name: str
+  + departments: List[Department]
+}
+
+class Department {
+  + name: str
+  + courses: List[Course]
+  + professors: List[Professor]
+}
+
+class Course {
+  + name: str
+  + professor: Professor
+  + department: Department
+  + year: int
+  + stream: str
+  + students: List[Student]
+}
+
+class Professor {
+  + name: str
+  + department: Department
+  + courses: List[Course]
+}
+
+class Student {
+  + name: str
+  + year: int
+  + specialization: str
+  + courses: List[Course]
+}
+
+University "1" *-- "*" Department : contains
+Department "1" *-- "*" Course : offers
+Department "1" *-- "*" Professor : has
+Course "1" *-- "*" Student : includes
+Course "1" -- "1" Professor : taught by
+@enduml
